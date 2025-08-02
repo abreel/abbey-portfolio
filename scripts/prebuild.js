@@ -1,4 +1,4 @@
-import { copyAllImages } from '@/lib/copyProjectAssets';
+import { copyAllImages } from '../lib/copyProjectAssets';
 
 copyAllImages()
   .then(() => {

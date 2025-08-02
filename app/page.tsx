@@ -29,7 +29,7 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
             <Card key={project.slug} className="hover:shadow-xl transition">
-              <Link href={`/project/${project.slug}`}>
+              <Link href={`/portfolio/${project.slug}`}>
                 <Image
                   src={project.images[0]} // Use the first image from the array
                   alt={project.metadata.title}

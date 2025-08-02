@@ -3,14 +3,9 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image from 'next/image';
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
-
-export default async function ProjectPage({ params }: Props) {
-  const project = await getProjectBySlug(params.slug);
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
 
   if (!project) return notFound();
 

@@ -1,4 +1,4 @@
-import { copyAllImages } from '@/lib/copyProjectAssets';
+import { copyAllImages } from '../lib/copyProjectAssets.js';
 import chokidar from 'chokidar';
 import path from 'path';
 

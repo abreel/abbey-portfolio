@@ -3,7 +3,13 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image from 'next/image';
 
-export default async function ProjectPage({ params }: { params: { slug: string } }) {
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function ProjectPage({ params }: Props) {
   const project = await getProjectBySlug(params.slug);
 
   if (!project) return notFound();
@@ -24,8 +30,8 @@ export default async function ProjectPage({ params }: { params: { slug: string }
               key={idx}
               src={`/projects/${project.slug}/${img}`}
               alt={img}
-              width={500} // You can set appropriate width
-              height={300} // ... and height based on your layout
+              width={500}
+              height={300}
               className="rounded border shadow w-full h-auto"
             />
           ))}

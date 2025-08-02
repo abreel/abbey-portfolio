@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "scripts/watchProjectImages.js",
-    "lib/copyProjectAssets.js"
+    "lib/copyProjectAssets.js",
+    "scripts/prebuild.js"
   ],
   "exclude": ["node_modules"]
 }

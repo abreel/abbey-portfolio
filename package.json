@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"ts-node scripts/watchProjectImages.js\" \"next dev --turbopack\"",
-    "prebuild": "ts-node scripts/prebuild.ts",
+    "prebuild": "node scripts/prebuild.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

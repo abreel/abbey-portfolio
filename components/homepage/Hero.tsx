@@ -7,8 +7,8 @@ import { Button } from '@/components/ui/button';
 export function HeroSection() {
   return (
     <div
-      className="relative overflow-hidden py-24 px-4 sm:px-6 lg:px-8 text-white bg-cover bg-center"
-      style={{ backgroundImage: `url('/hero-bg.jpg')` }}
+      className="relative h-screen w-full overflow-hidden text-white bg-cover bg-center"
+      style={{ backgroundImage: `url('/hero-bg.jpg')` }} // ensure the file is in the public/ folder
     >
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/60 z-0" />
@@ -27,17 +27,17 @@ export function HeroSection() {
         />
       </div>
 
-      {/* Glassmorphic content container */}
-      <motion.header
+      {/* Glassmorphic content container (full height) */}
+      <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 text-center max-w-4xl mx-auto px-8 py-16 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg"
+        className="relative z-10 flex flex-col items-center justify-center h-full w-full px-6 sm:px-10 md:px-16 text-center bg-white/10 backdrop-blur-md border-b border-white/10 rounded-b-[2rem] shadow-lg"
       >
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight bg-gradient-to-r from-gray-100 via-white to-gray-100 text-transparent bg-clip-text">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-tight bg-gradient-to-r from-gray-100 via-white to-gray-100 text-transparent bg-clip-text">
           Sanni Abiodun
         </h1>
-        <p className="text-lg md:text-xl max-w-2xl mx-auto text-gray-200 leading-relaxed">
+        <p className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto text-gray-200 leading-relaxed px-2">
           A multidisciplinary product developer with 10+ years in UI/UX, web development & ML.
           Founder, team leader, and Upwork Top Rated freelancer with a 100% job success score.
         </p>
@@ -50,7 +50,7 @@ export function HeroSection() {
             <Link href="#contact">Let’s Collaborate</Link>
           </Button>
         </div>
-      </motion.header>
+      </motion.div>
     </div>
   );
 }

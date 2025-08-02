@@ -11,7 +11,7 @@
     "prepare": "husky",
     "format": "prettier --write .",
     "type-check": "tsc --noEmit",
-    "prepush-check": "npm run lint && npm run type-check"
+    "prepush-check": "npm run lint && npm run format && npm run type-check"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [

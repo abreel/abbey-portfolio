@@ -9,113 +9,113 @@ const projectsDir = path.join(process.cwd(), 'projects');
 // ---------- Types ----------
 
 export interface ProjectFrontmatter {
-    title: string;
-    description: string;
-    slug?: string;
-    [key: string]: unknown;
+  title: string;
+  description: string;
+  slug?: string;
+  [key: string]: unknown;
 }
 
 export interface Project {
-    slug: string;
-    metadata: Required<ProjectFrontmatter>;
-    mdxSource: MDXRemoteSerializeResult;
-    images: string[];
+  slug: string;
+  metadata: Required<ProjectFrontmatter>;
+  mdxSource: MDXRemoteSerializeResult;
+  images: string[];
 }
 
 // ---------- Helpers ----------
 
 function getProjectImages(slug: string): string[] {
-    const publicImagesDir = path.join(process.cwd(), 'public', 'projects', slug, 'images');
+  const publicImagesDir = path.join(process.cwd(), 'public', 'projects', slug, 'images');
 
-    if (!fs.existsSync(publicImagesDir)) return [];
+  if (!fs.existsSync(publicImagesDir)) return [];
 
-    const files = fs.readdirSync(publicImagesDir);
-    return files
-        .filter(file => /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(file))
-        .map(file => `/projects/${slug}/images/${file}`); // This is correct path to use in <Image />
+  const files = fs.readdirSync(publicImagesDir);
+  return files
+    .filter((file) => /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(file))
+    .map((file) => `/projects/${slug}/images/${file}`); // This is correct path to use in <Image />
 }
 
 // ---------- Core Functions ----------
 
 export async function getAllProjects(): Promise<Project[]> {
-    const folders = fs.readdirSync(projectsDir);
+  const folders = fs.readdirSync(projectsDir);
 
-    const projects = await Promise.all(
-        folders.map(async (folder): Promise<Project | null> => {
-            const projectPath = path.join(projectsDir, folder);
+  const projects = await Promise.all(
+    folders.map(async (folder): Promise<Project | null> => {
+      const projectPath = path.join(projectsDir, folder);
 
-            let mdxPath = path.join(projectPath, 'index.mdx');
-            if (!fs.existsSync(mdxPath)) {
-                mdxPath = path.join(projectPath, 'index.md');
-                if (!fs.existsSync(mdxPath)) return null;
-            }
+      let mdxPath = path.join(projectPath, 'index.mdx');
+      if (!fs.existsSync(mdxPath)) {
+        mdxPath = path.join(projectPath, 'index.md');
+        if (!fs.existsSync(mdxPath)) return null;
+      }
 
-            const source = fs.readFileSync(mdxPath, 'utf8');
-            const { content, data } = matter(source);
+      const source = fs.readFileSync(mdxPath, 'utf8');
+      const { content, data } = matter(source);
 
-            // Validate required frontmatter
-            if (!data.title || !data.description) return null;
+      // Validate required frontmatter
+      if (!data.title || !data.description) return null;
 
-            const slug = typeof data.slug === 'string' ? data.slug : folder;
+      const slug = typeof data.slug === 'string' ? data.slug : folder;
 
-            const mdxSource = await serialize(content, {
-                scope: data,
-            });
-
-            const metadata: Required<ProjectFrontmatter> = {
-                title: data.title,
-                description: data.description,
-                slug,
-                ...data,
-            };
-
-            const images = getProjectImages(folder);
-
-            return {
-                slug,
-                metadata,
-                mdxSource,
-                images,
-            };
-        })
-    );
-
-    return projects.filter((project): project is Project => project !== null);
-}
-
-export async function getProjectBySlug(slug: string): Promise<Project | null> {
-    const dir = path.join(projectsDir, slug);
-    let mdxPath = path.join(dir, 'index.mdx');
-
-    if (!fs.existsSync(mdxPath)) {
-        mdxPath = path.join(dir, 'index.md');
-        if (!fs.existsSync(mdxPath)) {
-            return null;
-        }
-    }
-
-    const source = fs.readFileSync(mdxPath, 'utf8');
-    const { content, data } = matter(source);
-
-    if (!data.title || !data.description) return null;
-
-    const mdxSource = await serialize(content, {
+      const mdxSource = await serialize(content, {
         scope: data,
-    });
+      });
 
-    const metadata: Required<ProjectFrontmatter> = {
+      const metadata: Required<ProjectFrontmatter> = {
         title: data.title,
         description: data.description,
         slug,
         ...data,
-    };
+      };
 
-    const images = getProjectImages(slug);
+      const images = getProjectImages(folder);
 
-    return {
+      return {
         slug,
         metadata,
         mdxSource,
         images,
-    };
+      };
+    }),
+  );
+
+  return projects.filter((project): project is Project => project !== null);
+}
+
+export async function getProjectBySlug(slug: string): Promise<Project | null> {
+  const dir = path.join(projectsDir, slug);
+  let mdxPath = path.join(dir, 'index.mdx');
+
+  if (!fs.existsSync(mdxPath)) {
+    mdxPath = path.join(dir, 'index.md');
+    if (!fs.existsSync(mdxPath)) {
+      return null;
+    }
+  }
+
+  const source = fs.readFileSync(mdxPath, 'utf8');
+  const { content, data } = matter(source);
+
+  if (!data.title || !data.description) return null;
+
+  const mdxSource = await serialize(content, {
+    scope: data,
+  });
+
+  const metadata: Required<ProjectFrontmatter> = {
+    title: data.title,
+    description: data.description,
+    slug,
+    ...data,
+  };
+
+  const images = getProjectImages(slug);
+
+  return {
+    slug,
+    metadata,
+    mdxSource,
+    images,
+  };
 }

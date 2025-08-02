@@ -7,17 +7,14 @@ copyAllImages(); // Initial copy when dev starts
 const projectsDir = path.join(process.cwd(), 'projects');
 
 function watchImages() {
-    const watcher = chokidar.watch(path.join(projectsDir, '*/images/**/*'), {
-        ignoreInitial: true,
-        persistent: true,
-    });
+  const watcher = chokidar.watch(path.join(projectsDir, '*/images/**/*'), {
+    ignoreInitial: true,
+    persistent: true,
+  });
 
-    watcher
-        .on('add', copyAllImages)
-        .on('change', copyAllImages)
-        .on('unlink', copyAllImages);
+  watcher.on('add', copyAllImages).on('change', copyAllImages).on('unlink', copyAllImages);
 
-    console.log('🔍 Watching project images for changes...');
+  console.log('🔍 Watching project images for changes...');
 }
 
 watchImages();

@@ -46,7 +46,7 @@ export default function AnimatedSections({ projects }: Props) {
                 <Link href={`/portfolio/${project.slug}`} className="block">
                   <div className="relative w-full h-60 overflow-hidden">
                     <Image
-                      src={`/projects/${project.slug}/cover.jpg`}
+                      src={`/projects/${project.slug}/images/cover.jpg`}
                       alt={project.metadata.title}
                       fill
                       className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"

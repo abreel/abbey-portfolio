@@ -42,7 +42,7 @@ export default function AnimatedSections({ projects }: Props) {
               key={project.slug}
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
             >
-              <Card className="hover:shadow-xl transition-all duration-300 rounded-3xl overflow-hidden group bg-white dark:bg-zinc-900">
+              <Card className="hover:shadow-xl transition-all duration-300 rounded-3xl overflow-hidden group bg-white dark:bg-zinc-900 pt-0">
                 <Link href={`/portfolio/${project.slug}`} className="block">
                   <div className="relative w-full h-60 overflow-hidden">
                     <Image

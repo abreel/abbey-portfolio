@@ -56,7 +56,7 @@ export async function getAllProjects(): Promise<Project[]> {
       // Validate required frontmatter
       if (!data.title || !data.description) return null;
 
-      const slug = typeof data.slug === 'string' ? data.slug : folder;
+      const slug = folder;
 
       const mdxSource = await serialize(content, {
         scope: data,

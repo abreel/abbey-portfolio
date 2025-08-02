@@ -3,35 +3,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { getAllProjects } from '@/lib/projects';
 
-const projects = [
-  {
-    title: 'Fintech Web App',
-    category: 'Web Design',
-    image: '/projects/fintech.jpg',
-    slug: 'fintech-web-app',
-  },
-  {
-    title: 'Mobile App UI for Event Booking',
-    category: 'UI/UX',
-    image: '/projects/event-ui.jpg',
-    slug: 'event-booking-app',
-  },
-  {
-    title: 'Corporate Branding for Food Company',
-    category: 'Branding',
-    image: '/projects/branding.jpg',
-    slug: 'food-branding',
-  },
-  {
-    title: 'Paper Bag Print Design',
-    category: 'Printing',
-    image: '/projects/paper-bag.jpg',
-    slug: 'paper-bag-design',
-  },
-];
+export default async function HomePage() {
+  const projects = await getAllProjects();
 
-export default function HomePage() {
   return (
     <div className="px-6 py-10 max-w-7xl mx-auto">
       <header className="text-center mb-16">
@@ -55,15 +31,15 @@ export default function HomePage() {
             <Card key={project.slug} className="hover:shadow-xl transition">
               <Link href={`/project/${project.slug}`}>
                 <Image
-                  src={project.image}
-                  alt={project.title}
+                  src={project.images[0]} // Use the first image from the array
+                  alt={project.metadata.title}
                   width={400}
                   height={250}
                   className="w-full h-60 object-cover rounded-t-2xl"
                 />
                 <CardContent className="p-4">
-                  <h3 className="text-xl font-semibold">{project.title}</h3>
-                  <p className="text-sm text-muted-foreground">{project.category}</p>
+                  <h3 className="text-xl font-semibold">{project.metadata.title}</h3>
+                  <p className="text-sm text-muted-foreground">{project.metadata.description}</p>
                 </CardContent>
               </Link>
             </Card>

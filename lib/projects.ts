@@ -25,13 +25,14 @@ export interface Project {
 // ---------- Helpers ----------
 
 function getProjectImages(slug: string): string[] {
-    const imagesFolderPath = path.join(projectsDir, slug, 'images');
-    if (!fs.existsSync(imagesFolderPath)) return [];
+    const publicImagesDir = path.join(process.cwd(), 'public', 'projects', slug, 'images');
 
-    const files = fs.readdirSync(imagesFolderPath);
+    if (!fs.existsSync(publicImagesDir)) return [];
+
+    const files = fs.readdirSync(publicImagesDir);
     return files
         .filter(file => /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(file))
-        .map(file => `/projects/${slug}/images/${file}`); // public-facing path for <Image src=... />
+        .map(file => `/projects/${slug}/images/${file}`); // This is correct path to use in <Image />
 }
 
 // ---------- Core Functions ----------

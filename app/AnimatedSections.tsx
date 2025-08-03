@@ -5,8 +5,6 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
-// import { Button } from '@/components/ui/button';
-// import { Project } from '@/lib/projects';
 import { HeroSection } from '@/components/homepage/Hero';
 import { Project } from '@/types/project';
 
@@ -15,7 +13,8 @@ interface Props {
 }
 
 export default function AnimatedSections({ projects }: Props) {
-  console.log(projects);
+  const featuredProjects = projects.slice(0, 6);
+
   return (
     <>
       {/* Hero Section */}
@@ -39,7 +38,7 @@ export default function AnimatedSections({ projects }: Props) {
           viewport={{ once: true }}
           transition={{ staggerChildren: 0.15 }}
         >
-          {projects.map((project) => (
+          {featuredProjects.map((project) => (
             <motion.div
               key={project.slug}
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
@@ -67,6 +66,16 @@ export default function AnimatedSections({ projects }: Props) {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* View Portfolio Button */}
+        <div className="mt-12 text-center">
+          <Link
+            href="/portfolio"
+            className="inline-block px-6 py-3 text-sm font-medium text-white bg-black dark:bg-white dark:text-black rounded-full hover:opacity-80 transition"
+          >
+            View Full Portfolio
+          </Link>
+        </div>
       </div>
 
       {/* Contact Section */}

@@ -16,7 +16,9 @@ export default function Header() {
   return (
     <header className="bg-white shadow-md px-6 py-4">
       <div className="flex items-center justify-between max-w-8xl mx-auto">
-        <h1 className="text-xl font-bold text-gray-800">Sanni Abiodun</h1>
+        <Link href="/">
+          <h1 className="text-xl font-bold text-gray-800">Sanni Abiodun</h1>
+        </Link>
 
         {/* Mobile toggle button */}
         <button
@@ -31,9 +33,9 @@ export default function Header() {
         <nav className="hidden md:flex space-x-6">
           {navLinks.map((link) =>
             link.href.startsWith('#') ? (
-              <a key={link.href} href={link.href} className="text-gray-600 hover:text-gray-900">
+              <Link key={link.href} href={link.href} className="text-gray-600 hover:text-gray-900">
                 {link.label}
-              </a>
+              </Link>
             ) : (
               <Link key={link.href} href={link.href} passHref>
                 <span className="cursor-pointer text-gray-600 hover:text-gray-900">
@@ -50,14 +52,14 @@ export default function Header() {
         <nav className="mt-4 flex flex-col space-y-2 md:hidden">
           {navLinks.map((link) =>
             link.href.startsWith('#') ? (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="text-gray-600 hover:text-gray-900"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
-              </a>
+              </Link>
             ) : (
               <Link key={link.href} href={link.href} passHref>
                 <span

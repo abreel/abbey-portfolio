@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/style.css';
+import Link from 'next/link';
 
 export default function Gallery({
   items,
@@ -29,7 +30,7 @@ export default function Gallery({
   return (
     <div ref={containerRef} className="pswp-gallery flex gap-4 overflow-x-auto">
       {items.map((item, index) => (
-        <a
+        <Link
           key={index}
           href={item.src}
           data-pswp-width={item.width}
@@ -43,7 +44,7 @@ export default function Gallery({
             alt={`Screenshot ${index + 1}`}
             className="w-[300px] rounded-md shadow-md"
           />
-        </a>
+        </Link>
       ))}
     </div>
   );

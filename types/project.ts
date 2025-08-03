@@ -33,11 +33,6 @@ export interface ProjectFrontmatter {
   }[];
 
   outcome?: string;
-
-  cta?: {
-    text: string;
-    link: string;
-  };
 }
 
 export interface Project {

@@ -64,10 +64,6 @@ export async function getAllProjects(): Promise<Project[]> {
         },
         screenshots: data.screenshots ?? [],
         outcome: data.outcome ?? '',
-        cta: {
-          text: data.cta?.text ?? '',
-          link: data.cta?.link ?? '',
-        },
         ...data,
       };
 
@@ -123,10 +119,6 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
     },
     screenshots: data.screenshots ?? [],
     outcome: data.outcome ?? '',
-    cta: {
-      text: data.cta?.text ?? '',
-      link: data.cta?.link ?? '',
-    },
     ...data,
   };
 

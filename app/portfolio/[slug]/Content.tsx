@@ -5,6 +5,7 @@ import { AnimatedImage } from '@/components/ui/AnimatedImage';
 import { MDXContent } from '@/components/MDXContent';
 import { MDXComponents, Project } from '@/types/project';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const components: MDXComponents = {
   Image: AnimatedImage,
@@ -53,6 +54,27 @@ export default function Content({ project }: { project: Project }) {
         <p className="text-sm text-gray-400">{meta.date}</p>
       </motion.div>
 
+      {meta.screenshots?.length > 0 && (
+        <section>
+          <h2 className="text-2xl font-bold mb-4">Screenshots</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {project.images.map((img, i) => (
+              <div key={i} className="rounded-lg overflow-hidden shadow-md">
+                <AnimatedImage
+                  src={`/projects/${project.slug}/${img}`}
+                  alt={img}
+                  width={600}
+                  height={400}
+                />
+                {/* {img.caption && (
+                                    <p className="text-center text-sm text-gray-500 mt-2">{img.caption}</p>
+                                )} */}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {meta.overview && (
         <section>
           <h2 className="text-2xl font-bold mb-2">Overview</h2>
@@ -91,22 +113,6 @@ export default function Content({ project }: { project: Project }) {
                 </div>
               ) : null,
             )}
-          </div>
-        </section>
-      )}
-
-      {meta.screenshots?.length > 0 && (
-        <section>
-          <h2 className="text-2xl font-bold mb-4">Screenshots</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {meta.screenshots.map((img, i) => (
-              <div key={i} className="rounded-lg overflow-hidden shadow-md">
-                <AnimatedImage src={img.src} alt={img.alt} width={600} height={400} />
-                {img.caption && (
-                  <p className="text-center text-sm text-gray-500 mt-2">{img.caption}</p>
-                )}
-              </div>
-            ))}
           </div>
         </section>
       )}

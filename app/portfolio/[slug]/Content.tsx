@@ -6,6 +6,7 @@ import { MDXContent } from '@/components/MDXContent';
 import { MDXComponents, Project } from '@/types/project';
 import { ImageGallery } from '@/components/ui/ImageGallery';
 import PageLayout from '@/components/layouts/Layout';
+import { LetsTalkCTA } from '../LetsTalkCTA';
 
 const components: MDXComponents = {
   Image: AnimatedImage,
@@ -54,10 +55,11 @@ export default function Content({ project }: { project: Project }) {
         >
           <h1 className="text-4xl font-serif text-gray-900 mb-3 tracking-wide">{meta.title}</h1>
           <p className="text-lg text-gray-600 mb-2">{meta.description}</p>
-          <p className="text-sm text-gray-400">{meta.date}</p>
         </motion.div>
 
-        {meta.screenshots?.length > 0 && <ImageGallery screenshots={project.images} />}
+        {project.images?.length > 0 && <ImageGallery screenshots={project.images} />}
+
+        <LetsTalkCTA />
 
         {meta.overview && (
           <section>

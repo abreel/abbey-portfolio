@@ -7,6 +7,7 @@ import { Card, CardContent } from '../ui/card';
 import Image from 'next/image';
 
 export default function ProjectsList({ projects }: { projects: Project[] }) {
+  console.log(projects);
   return (
     <motion.div
       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-4"
@@ -25,8 +26,10 @@ export default function ProjectsList({ projects }: { projects: Project[] }) {
               <div className="relative w-full h-60 overflow-hidden">
                 <Image
                   src={`/projects/${project.slug}/images/cover.jpg`}
+                  width={500}
+                  height={500}
                   alt={project.metadata.title}
-                  fill
+                  // fill
                   className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
                 />
               </div>

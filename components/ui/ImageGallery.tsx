@@ -5,7 +5,7 @@ const Gallery = dynamic(() => import('./PhotoSwipeLightbox'), { ssr: false });
 export const ImageGallery = ({ screenshots }: { screenshots: string[] }) => {
   const galleryItems = screenshots.map((src) => ({
     src,
-    width: 1280, // adjust based on actual image resolution
+    width: 1280,
     height: 720,
   }));
 

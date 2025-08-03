@@ -53,7 +53,7 @@ export default function Content({ project }: { project: Project }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl font-serif text-gray-900 mb-3 tracking-wide">{meta.title}</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-3 tracking-wide">{meta.title}</h1>
           <p className="text-lg text-gray-600 mb-2">{meta.description}</p>
         </motion.div>
 

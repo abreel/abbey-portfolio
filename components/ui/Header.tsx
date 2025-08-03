@@ -15,7 +15,7 @@ export default function Header() {
 
   return (
     <header className="bg-white shadow-md px-6 py-4">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between max-w-8xl mx-auto">
         <h1 className="text-xl font-bold text-gray-800">Sanni Abiodun</h1>
 
         {/* Mobile toggle button */}

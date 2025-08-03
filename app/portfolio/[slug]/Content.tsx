@@ -4,9 +4,8 @@ import { HTMLMotionProps, motion } from 'framer-motion';
 import { AnimatedImage } from '@/components/ui/AnimatedImage';
 import { MDXContent } from '@/components/MDXContent';
 import { MDXComponents, Project } from '@/types/project';
-import Link from 'next/link';
 import { ImageGallery } from '@/components/ui/ImageGallery';
-import { ContactSection } from '@/app/ContactSection';
+import PageLayout from '@/components/layouts/Layout';
 
 const components: MDXComponents = {
   Image: AnimatedImage,
@@ -36,7 +35,7 @@ export default function Content({ project }: { project: Project }) {
   const meta = project.metadata;
 
   return (
-    <>
+    <PageLayout>
       <div className="px-6 pt-12 space-y-10 max-w-7xl mx-auto">
         {meta.coverImage && (
           <AnimatedImage
@@ -119,7 +118,6 @@ export default function Content({ project }: { project: Project }) {
           <MDXContent project={project} components={components} />
         </motion.div>
       </div>
-      <ContactSection />
-    </>
+    </PageLayout>
   );
 }

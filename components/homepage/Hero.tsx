@@ -107,23 +107,11 @@ export function HeroSection() {
             <Button
               asChild
               size="lg"
-              className="px-8 py-5 text-base rounded-full bg-white text-black hover:scale-105 transition-transform shadow-md"
+              className="px-8 py-5 text-base rounded-full bg-white hover:bg-gray-200 text-black hover:scale-105 transition-transform shadow-md"
             >
-              <Link href="#contact">Let’s Collaborate</Link>
+              <Link href="#contact">Let&apos;s Collaborate</Link>
             </Button>
           </div>
-
-          {/* Terminal Simulation */}
-          {/* <div
-                            ref={terminalRef}
-                            className="w-full max-w-xl mx-auto bg-black/40 text-green-400 text-left p-4 rounded-md font-mono text-sm leading-relaxed border border-green-500/30 shadow-inner h-36 overflow-auto backdrop-blur-sm"
-                        >
-                            {typedLines.map((line, index) => (
-                                <p key={index} className="whitespace-pre-line">
-                                    {line}
-                                </p>
-                            ))}
-                        </div> */}
         </motion.header>
       </motion.div>
     </div>

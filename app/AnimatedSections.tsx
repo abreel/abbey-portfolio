@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { HeroSection } from '@/components/homepage/Hero';
 import { Project } from '@/types/project';
 import ProjectsList from '@/components/lists/ProjectsList';
+import { Button } from '@/components/ui/button';
 
 interface Props {
   projects: Project[];
@@ -34,12 +35,14 @@ export default function AnimatedSections({ projects }: Props) {
 
         {/* View Portfolio Button */}
         <div className="mt-12 text-center">
-          <Link
-            href="/portfolio"
-            className="inline-block px-6 py-3 text-sm font-medium text-white bg-black dark:bg-white dark:text-black rounded-full hover:opacity-80 transition"
-          >
-            View Full Portfolio
-          </Link>
+          <Button className="py-5 px-6">
+            <Link
+              href="/portfolio"
+              // className="inline-block px-6 py-3 text-sm font-medium text-white bg-black dark:bg-white dark:text-black rounded-full hover:opacity-80 transition"
+            >
+              View Full Portfolio
+            </Link>
+          </Button>
         </div>
       </div>
 

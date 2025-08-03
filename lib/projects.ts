@@ -2,25 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { Project, ProjectFrontmatter } from '@/types/project';
 
 const projectsDir = path.join(process.cwd(), 'projects');
-
-// ---------- Types ----------
-
-export interface ProjectFrontmatter {
-  title: string;
-  description: string;
-  slug?: string;
-  [key: string]: unknown;
-}
-
-export interface Project {
-  slug: string;
-  metadata: Required<ProjectFrontmatter>;
-  mdxSource: MDXRemoteSerializeResult;
-  images: string[];
-}
 
 // ---------- Helpers ----------
 
@@ -66,6 +50,24 @@ export async function getAllProjects(): Promise<Project[]> {
         title: data.title,
         description: data.description,
         slug,
+        date: data.date ?? '', // default empty
+        coverImage: data.coverImage ?? '',
+
+        overview: data.overview ?? '',
+        features: data.features ?? [],
+        technologies: {
+          frontend: data.technologies?.frontend ?? [],
+          visualization: data.technologies?.visualization ?? [],
+          auth: data.technologies?.auth ?? [],
+          data: data.technologies?.data ?? [],
+          deploy: data.technologies?.deploy ?? [],
+        },
+        screenshots: data.screenshots ?? [],
+        outcome: data.outcome ?? '',
+        cta: {
+          text: data.cta?.text ?? '',
+          link: data.cta?.link ?? '',
+        },
         ...data,
       };
 
@@ -107,6 +109,24 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
     title: data.title,
     description: data.description,
     slug,
+    date: data.date ?? '', // default empty
+    coverImage: data.coverImage ?? '',
+
+    overview: data.overview ?? '',
+    features: data.features ?? [],
+    technologies: {
+      frontend: data.technologies?.frontend ?? [],
+      visualization: data.technologies?.visualization ?? [],
+      auth: data.technologies?.auth ?? [],
+      data: data.technologies?.data ?? [],
+      deploy: data.technologies?.deploy ?? [],
+    },
+    screenshots: data.screenshots ?? [],
+    outcome: data.outcome ?? '',
+    cta: {
+      text: data.cta?.text ?? '',
+      link: data.cta?.link ?? '',
+    },
     ...data,
   };
 

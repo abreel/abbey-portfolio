@@ -3,22 +3,16 @@ import path from 'path';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
 import { Project, ProjectFrontmatter } from '@/types/project';
+import imageMapRaw from '@/projects/imageMap.json' assert { type: 'json' };
+
+const imageMap = imageMapRaw as Record<string, string[]>;
 
 const projectsDir = path.join(process.cwd(), 'projects');
 
-// ---------- Helpers ----------
-
 function getProjectImages(slug: string): string[] {
-  const publicImagesDir = path.join(process.cwd(), 'public', 'projects', slug, 'images');
-
-  if (!fs.existsSync(publicImagesDir)) return [];
-
-  const files = fs.readdirSync(publicImagesDir);
-  return files
-    .filter((file) => /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(file))
-    .map((file) => `/projects/${slug}/images/${file}`); // This is correct path to use in <Image />
+  if (!imageMap || typeof imageMap !== 'object') return [];
+  return imageMap[slug] || [];
 }
-
 // ---------- Core Functions ----------
 
 export async function getAllProjects(): Promise<Project[]> {

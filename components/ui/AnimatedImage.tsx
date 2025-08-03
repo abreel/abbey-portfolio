@@ -43,7 +43,7 @@ export const AnimatedImage = ({
             isLoading ? 'blur-md scale-105' : 'blur-0 scale-100'
           } ${className}`}
           sizes="(max-width: 768px) 100vw, 700px"
-          onLoadingComplete={() => setIsLoading(false)}
+          onLoad={() => setIsLoading(false)}
           onError={() => {
             setHasError(true);
             setIsLoading(false);

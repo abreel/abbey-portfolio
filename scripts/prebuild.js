@@ -1,6 +1,6 @@
-import { copyAllImages } from '../lib/copyProjectAssets.js';
+import { copyAllImagesAndGenerateMap } from '../lib/copyProjectAssets.js';
 
-copyAllImages()
+copyAllImagesAndGenerateMap()
   .then(() => {
     console.log('📦 Project images copied before build.');
   })

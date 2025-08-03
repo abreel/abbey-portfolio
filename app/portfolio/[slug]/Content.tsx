@@ -32,7 +32,7 @@ const components: MDXComponents = {
   ),
 };
 
-export default function Content({ project }: { project: Project }) {
+export default function p({ project }: { project: Project }) {
   const meta = project.metadata;
 
   return (

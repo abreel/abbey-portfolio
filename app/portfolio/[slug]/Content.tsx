@@ -5,7 +5,7 @@ import { AnimatedImage } from '@/components/ui/AnimatedImage';
 import { MDXContent } from '@/components/MDXContent';
 import { MDXComponents, Project } from '@/types/project';
 import Link from 'next/link';
-import Image from 'next/image';
+import { ImageGallery } from '@/components/ui/ImageGallery';
 
 const components: MDXComponents = {
   Image: AnimatedImage,
@@ -56,18 +56,7 @@ export default function Content({ project }: { project: Project }) {
         <p className="text-sm text-gray-400">{meta.date}</p>
       </motion.div>
 
-      {meta.screenshots?.length > 0 && (
-        <section>
-          <h2 className="text-2xl font-bold mb-4">Screenshots</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {project.images.map((img, i) => (
-              <div key={i} className="rounded-lg overflow-hidden shadow-md">
-                <AnimatedImage src={img} alt={`Screenshot ${i}`} width={600} height={400} />
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+      {meta.screenshots?.length > 0 && <ImageGallery screenshots={project.images} />}
 
       {meta.overview && (
         <section>

@@ -35,14 +35,16 @@ export default function Content({ project }: { project: Project }) {
   const meta = project.metadata;
 
   return (
-    <div className="px-6 py-12 space-y-10">
-      <AnimatedImage
-        src={`/projects/${project.slug}${meta.coverImage}`}
-        alt={`${meta.title} Cover`}
-        width={800}
-        height={500}
-        className="rounded-lg shadow-md"
-      />
+    <div className="px-6 pb-12 space-y-10">
+      {meta.coverImage && (
+        <AnimatedImage
+          src={`/projects/${project.slug}${meta.coverImage}`}
+          alt={`${meta.title} Cover`}
+          width={800}
+          height={500}
+          className="rounded-lg shadow-md h-[80vh] max-h-[600px]"
+        />
+      )}
 
       <motion.div
         initial={{ opacity: 0, y: 40 }}
@@ -60,15 +62,7 @@ export default function Content({ project }: { project: Project }) {
           <div className="grid md:grid-cols-2 gap-6">
             {project.images.map((img, i) => (
               <div key={i} className="rounded-lg overflow-hidden shadow-md">
-                <AnimatedImage
-                  src={`/projects/${project.slug}/${img}`}
-                  alt={img}
-                  width={600}
-                  height={400}
-                />
-                {/* {img.caption && (
-                                    <p className="text-center text-sm text-gray-500 mt-2">{img.caption}</p>
-                                )} */}
+                <AnimatedImage src={img} alt={`Screenshot ${i}`} width={600} height={400} />
               </div>
             ))}
           </div>
